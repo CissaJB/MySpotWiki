@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "66244c9cce6de20b1248ca39"
+  },
+  "name": "Pop"
+},
+{
+  "_id": {
+    "$oid": "66244cddce6de20b1248ca3b"
+  },
+  "name": "Samba"
+},
+{
+  "_id": {
+    "$oid": "66244ce8ce6de20b1248ca3c"
+  },
+  "name": "Pagode"
+},
+{
+  "_id": {
+    "$oid": "66244cecce6de20b1248ca3d"
+  },
+  "name": "Blues"
+},
+{
+  "_id": {
+    "$oid": "66244cf0ce6de20b1248ca3e"
+  },
+  "name": "Jazz"
+},
+{
+  "_id": {
+    "$oid": "6624567b3f8aa82cb13d3eb6"
+  },
+  "name": "Country"
+},
+{
+  "_id": {
+    "$oid": "662ae278a9469e622467f966"
+  },
+  "name": "KPOP"
+}]

@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "662461fff0283949d7540fe1"
+  },
+  "name": "Lover",
+  "artist": "Taylor Swift",
+  "genre_id": "66244c9cce6de20b1248ca39",
+  "year": 2019
+},
+{
+  "_id": {
+    "$oid": "66246256f0283949d7540fe3"
+  },
+  "name": "Emails I can't send",
+  "artist": "Sabrina Carpenter",
+  "genre_id": "66244c9cce6de20b1248ca39",
+  "year": 2022
+},
+{
+  "_id": {
+    "$oid": "662468c91da2db7a6c2ce1c5"
+  },
+  "name": "GUTS",
+  "artist": "Olivia Rodrigo",
+  "genre_id": "66244c9cce6de20b1248ca39",
+  "year": 2023
+},
+{
+  "_id": {
+    "$oid": "662468fe1da2db7a6c2ce1c6"
+  },
+  "name": "Drivers License",
+  "artist": "Olivia Rodrigo",
+  "genre_id": "66244c9cce6de20b1248ca39",
+  "year": 2021
+},
+{
+  "_id": {
+    "$oid": "662ae3b9a9469e622467f96a"
+  },
+  "name": "Formula of Love: O+T=＜3",
+  "artist": "Twice",
+  "genre_id": "KPOP",
+  "year": 2021
+},
+{
+  "_id": {
+    "$oid": "662ae3c3a9469e622467f96b"
+  },
+  "name": "With You-th",
+  "artist": "Twice",
+  "genre_id": "KPOP",
+  "year": 2024
+},
+{
+  "_id": {
+    "$oid": "662ae3c9a9469e622467f96c"
+  },
+  "name": "Between 1&2",
+  "artist": "Twice",
+  "genre_id": "KPOP",
+  "year": 2022
+},
+{
+  "_id": {
+    "$oid": "662ae3f2a9469e622467f96d"
+  },
+  "name": "I Never Die",
+  "artist": "(G)I-DLE",
+  "genre_id": "KPOP",
+  "year": 2021
+},
+{
+  "_id": {
+    "$oid": "662ae748a9469e622467f96e"
+  },
+  "name": "Unforgiven",
+  "artist": "Le Sserafim",
+  "genre_id": "KPOP",
+  "year": 2023
+}]

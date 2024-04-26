@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "662500ec7eff98a502ee0b0d"
+  },
+  "name": "Taylor Swift"
+},
+{
+  "_id": {
+    "$oid": "662500f97eff98a502ee0b0e"
+  },
+  "name": "Sabrina Carpenter"
+},
+{
+  "_id": {
+    "$oid": "662501067eff98a502ee0b0f"
+  },
+  "name": "Olivia Rodrigo"
+},
+{
+  "_id": {
+    "$oid": "6625011b7eff98a502ee0b10"
+  },
+  "name": "Lewis Capaldi"
+},
+{
+  "_id": {
+    "$oid": "662501227eff98a502ee0b11"
+  },
+  "name": "Ruel"
+},
+{
+  "_id": {
+    "$oid": "662501317eff98a502ee0b12"
+  },
+  "name": "Niall Horan"
+},
+{
+  "_id": {
+    "$oid": "6625014f7eff98a502ee0b13"
+  },
+  "name": "Miley Cirus"
+},
+{
+  "_id": {
+    "$oid": "662ae219a9469e622467f963"
+  },
+  "name": "Twice"
+},
+{
+  "_id": {
+    "$oid": "662ae22ea9469e622467f964"
+  },
+  "name": "(G)I-DLE"
+},
+{
+  "_id": {
+    "$oid": "662ae241a9469e622467f965"
+  },
+  "name": "Le Sserafim"
+}]
