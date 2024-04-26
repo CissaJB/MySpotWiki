@@ -80,7 +80,7 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             });
             const response = await app.inject({
                 method: 'GET',
-                url: '/musicGenre/66299aa71d577d2218a052b8/musicAlbum'
+                url: '/musicGenre/662ae278a9469e622467f966/musicAlbum'
             });
             equal(response.statusCode, 200);
         });
@@ -101,6 +101,49 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             });
             equal(response.statusCode, 201);
         });
+           test('# POST /user', async(t) => {
+            const app = await build(options);
+    
+            t.after(async() => {
+                await app.close();
+            });
+            const response = await app.inject({
+                method: 'POST',
+                url: '/user',
+                body: {
+                    username: "clarissa",
+                    email: "claris@hotmail.com.br"
+                }
+            });
+            equal(response.statusCode, 201);
+        });
+
+        test('# GET /user', async(t) => {
+            const app = await build(options);
+
+            t.after(async() => {
+                await app.close();
+            });
+            const response = await app.inject({
+                method: 'GET',
+                url: '/user'
+            });
+            equal(response.statusCode, 200);
+        });
+
+        test('# GET /user/:id', async(t) => {
+            const app = await build(options);
+
+            t.after(async() => {
+                await app.close();
+            });
+            const response = await app.inject({
+                method: 'GET',
+                url: '/user/6621b03ec0408aa378a5e43b'
+            });
+            equal(response.statusCode, 200);
+        });
+
 
     describe('##Bad Requests', async(t) => {
         test('# POST /user', async(t) => {
@@ -119,6 +162,7 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             });
             equal(response.statusCode, 403);
         });
+
     });
 
 });
@@ -136,12 +180,12 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'PUT',
-                url: '/user/', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                url: '/user/662ae086a9469e622467f961', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpYSIsImVtYWlsIjoiYmlhQGhvdG1haWwuY29tIiwiaWF0IjoxNzEzNDgzODM4fQ.S9VNBjzcUweZGeHRXN39nOIOXQDKoHc8LEvRgGZ4Gew"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body:{
-                    "isAdmin": true
+                    "isAdmin": false
                 }
             });
             equal(response.statusCode, 200);
@@ -155,13 +199,27 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'DELETE',
-                url: '/user/', //CRIAR UM OUTRO USUÁRIO E DEPOIS APAGAR
+                url: '/user/662ae086a9469e622467f961', //CRIAR UM OUTRO USUÁRIO E DEPOIS APAGAR
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImJpYSIsImVtYWlsIjoiYmlhQGhvdG1haWwuY29tIiwiaWF0IjoxNzEzNDgzODM4fQ.S9VNBjzcUweZGeHRXN39nOIOXQDKoHc8LEvRgGZ4Gew"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 204);
         });
+
+        test('# GET /user/:id', async(t) => {
+            const app = await build(options);
+
+            t.after(async() => {
+                await app.close();
+            });
+            const response = await app.inject({
+                method: 'GET',
+                url: '/user/662ae086a9469e622467f961'
+            });
+            equal(response.statusCode, 404);
+        });
+
 
     // TESTES DE SUCESSO PARA ARTISTAS
         
@@ -175,7 +233,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'POST',
                 url: '/artist',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
                     name: "NewJeans"
@@ -194,7 +252,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'PUT',
                 url: '/artist/6625014f7eff98a502ee0b13',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
                     name: "Miley Cyrus"
@@ -213,7 +271,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'DELETE',
                 url: '/artist/662501227eff98a502ee0b11',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 204);
@@ -231,7 +289,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'POST',
                 url: '/musicAlbum',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
                     name: "Eyes Wide Open",
@@ -253,7 +311,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'PUT',
                 url: '/musicAlbum/662468fe1da2db7a6c2ce1c6',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
                     name: "Sour"
@@ -270,9 +328,9 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'DELETE',
-                url: '/musicAlbum/6629a2d61d577d2218a052bf',
+                url: '/musicAlbum/662ae3b9a9469e622467f96a',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 204);
@@ -290,7 +348,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'POST',
                 url: '/musicGenre',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
                     name: "MPB",
@@ -309,7 +367,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'PUT',
                 url: '/musicGenre/66244cecce6de20b1248ca3d',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
                     name: "R&B"
@@ -328,7 +386,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'DELETE',
                 url: '/musicGenre/66244cddce6de20b1248ca3b',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 204);
@@ -347,7 +405,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'PUT',
-                url: '/user/', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                url: '/user/6622db5f69c1d2ba2fa46661', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
                 body:{
                     "isAdmin": true
                 }
@@ -363,7 +421,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'PUT',
-                url: '/user/', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                url: '/user/6622db5f69c1d2ba2fa46661', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
                  headers:{
                     "x-access-token": "ygJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
                 },
@@ -374,44 +432,42 @@ describe('###Tests for Authenticated routes', async(t) => {
             equal(response.statusCode, 401);
         });
 
-       test('# PUT /user/:id', async(t) => { // DELETANDO UM USUÁRIO QUE NÃO EXISTE
+       test('# DELETE /user/:id', async(t) => { // DELETANDO UM USUÁRIO QUE NÃO EXISTE
             const app = await build(options);
 
             t.after(async() => {
                 await app.close();
             });
             const response = await app.inject({
-                method: 'PUT',
-                url: '/user/', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                method: 'DELETE',
+                url: '/users/662ae086a9469e622467f961', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
                  headers:{
-                    "x-access-token": "ygJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
-                },
-                body:{
-                    "isAdmin": true
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 404);
         });
 
-    //TESTES DE ERROS PARA ARTISTAS
-       test('# POST /artist', async(t) => {  //TESTE CRIANDO UMA COISA QUE JÁ EXISTA
-            const app = await build(options);
 
-            t.after(async() => {
-                await app.close();
-            });
-            const response = await app.inject({
-                method: 'POST',
-                url: '/artist',
-                headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
-                },
-                body: {
-                    name: "Twice"
-                }
-            });
-            equal(response.statusCode, 400);
-        })
+      //TESTES DE ERROS PARA ARTISTAS
+      test('# POST /artist', async(t) => {  //TESTE CRIANDO UMA COISA QUE JÁ EXISTA
+        const app = await build(options);
+
+        t.after(async() => {
+            await app.close();
+        });
+        const response = await app.inject({
+            method: 'POST',
+            url: '/artist',
+            headers:{
+                "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
+            },
+            body: {
+                name: "Taylor Swift"
+            }
+        });
+        equal(response.statusCode, 400);
+    })
 
         test('# PUT /artist/:id', async(t) => {   // TESTE SEM O HEARDER
             const app = await build(options);
@@ -421,9 +477,12 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'PUT',
-                url: '/artists/6625014f7eff98a502ee0b13',
+                url: '/artist/662ae219a9469e622467f963',
+                headers:{
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNlY2lsaWEyIiwiZW1haWwiOiJDZWNpbGlhQGhvdG1haWwuY29tIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTcxNDA4ODcwM30.Va8JPxo6bLmq9Tf6YHXazC-gJCvinzYBxE7yFCsn3xY"
+                },
                 body: {
-                    name: "Miley Cyrus"
+                    name: "TWICE"
                 }
             });
             equal(response.statusCode, 401);
@@ -439,14 +498,14 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'DELETE',
                 url: '/artist/662501227eff98a502ee0b11',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 404);
         })
 
-    // TESTES DE ERRO PARA ALBUNS DE MUSICA
-        
+// TESTES DE ERRO PARA ALBUNS DE MUSICA
+    
         test('# POST /musicAlbum', async(t) => {  //ADICIONANDO O LOVER (QUE JÁ EXISTE)
             const app = await build(options);
 
@@ -457,13 +516,13 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'POST',
                 url: '/musicAlbum',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
-                    name: "Eyes Wide Open",
-                    artist: "Twice",
-                    genre_id: "KPOP",
-                    year: 2020
+                    name: "Lover",
+                    artist: "Taylor Swift",
+                    genre_id: "Pop",
+                    year: 2019
                 }
             });
             equal(response.statusCode, 400);
@@ -479,7 +538,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'PUT',
                 url: '/musicAlbum/662468fe1da2db7a6c2ce1c6',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
                 },
                 body: {
                     name: "Sour"
@@ -498,13 +557,13 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'DELETE',
                 url: '/musicAlbum/6629a2d61d577d2218a052bf',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 404);
         })
- // TESTES DE ERRO PARA GÊNEROS MUSICAIS 
-      test('# POST /musicGenre', async(t) => {  // ADCIONANDO MAIS UM GÊNERO MUSICAL (QUE JÁ EXISTE)
+// TESTES DE ERRO PARA GÊNEROS MUSICAIS 
+        test('# POST /musicGenre', async(t) => {  // ADCIONANDO MAIS UM GÊNERO MUSICAL (QUE JÁ EXISTE)
             const app = await build(options);
 
             t.after(async() => {
@@ -514,7 +573,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'POST',
                 url: '/musicGenre',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
                 body: {
                     name: "Jazz",
@@ -552,14 +611,25 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'DELETE',
                 url: '/musicGenre/66244cddce6de20b1248ca3b',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
             });
             equal(response.statusCode, 404);
         })
+    
+    // TESTES DE ERRO 
+        test('# GET /artist', async(t) => {
+            const app = await build(options);
+
+            t.after(async() => {
+                await app.close();
+            });
+            const response = await app.inject({
+                method: 'GET',
+                url: '/error'
+            });
+            equal(response.statusCode, 501);
+        });
 
     })
-      
-  })
-
 })
