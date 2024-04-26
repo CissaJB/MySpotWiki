@@ -128,6 +128,23 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             equal(response.statusCode, 200);
         });
 
+        test('# DELETE /user', async(t) => {
+            const app = await build(options);
+
+            t.after(async() => {
+                await app.close();
+            });
+            const response = await app.inject({
+                method: 'DELETE',
+                url: '/user',
+                headers:{
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcmlzY3JldWRlcyIsImVtYWlsIjoibWFyaUBnbWFpbC5jb20iLCJpYXQiOjE3MTM1NTIwNzR9.pa2_UUKrHbK7xLDVbof7BpWDI87LmKpvqmKdm_3SxgA"
+                }
+            });
+
+            equal(response.statusCode, 204);
+        });
+
 
     describe('##Bad Requests', async(t) => {
         test('# POST /user', async(t) => {
@@ -146,7 +163,7 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             });
             equal(response.statusCode, 403);
         });
-
+        
     });
 
 });
