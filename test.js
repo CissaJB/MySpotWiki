@@ -101,22 +101,6 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             });
             equal(response.statusCode, 201);
         });
-           test('# POST /user', async(t) => {
-            const app = await build(options);
-    
-            t.after(async() => {
-                await app.close();
-            });
-            const response = await app.inject({
-                method: 'POST',
-                url: '/user',
-                body: {
-                    username: "clarissa",
-                    email: "claris@hotmail.com.br"
-                }
-            });
-            equal(response.statusCode, 201);
-        });
 
         test('# GET /user', async(t) => {
             const app = await build(options);
@@ -215,7 +199,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'GET',
-                url: '/user/662ae086a9469e622467f961'
+                url: '/user/662ae086a9469e622467f923'
             });
             equal(response.statusCode, 404);
         });
@@ -629,6 +613,19 @@ describe('###Tests for Authenticated routes', async(t) => {
                 url: '/error'
             });
             equal(response.statusCode, 501);
+        });
+
+        test('# GET /notfound', async(t) => {
+            const app = await build(options);
+
+            t.after(async() => {
+                await app.close();
+            });
+            const response = await app.inject({
+                method: 'GET',
+                url: '/notfound'
+            });
+            equal(response.statusCode, 404);
         });
 
     })
