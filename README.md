@@ -33,7 +33,7 @@ pré-requisitos, etapas de instalação e como acessar as rotas da API.
 Certifique-se de que seus testes validem a funcionalidade e a segurança de sua API.
 
 ### Para iniciar:
-- faça um **cd** para a pasta **-main**
+- faça um **cd** para a pasta **MySpotWiki-main**
 - No terminal faça **npm install** para instalar todas as dependências utilizadas no projeto
 
 ### Para colocar os dados no servidor:
