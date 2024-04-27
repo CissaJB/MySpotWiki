@@ -4,7 +4,7 @@
 ### Turma: CC5MB
 
 ## _MySpotWiki_
-Contexto:
+**Contexto:**
 
 Este projeto é uma oportunidade para você demonstrar sua compreensão dos principais
 conceitos de desenvolvimento web, incluindo autenticação de usuário, persistência de
