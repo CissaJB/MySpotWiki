@@ -1,6 +1,7 @@
 # Trabalho2 do 1°Bimestre (Programação avançada para WEB)
 
 ### Alunas: Beatriz Brito Oliveira e Cecilia de Jesus Barros
+### Professor: Wagner de Andrade Perin
 ### Turma: CC5MB
 
 ## _MySpotWiki_
