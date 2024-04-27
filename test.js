@@ -123,7 +123,7 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             });
             const response = await app.inject({
                 method: 'GET',
-                url: '/user/6621b03ec0408aa378a5e43b'
+                url: '/user/662ae19aa9469e622467f962'
             });
             equal(response.statusCode, 200);
         });
@@ -138,7 +138,7 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
                 method: 'DELETE',
                 url: '/user',
                 headers:{
-                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcmlzY3JldWRlcyIsImVtYWlsIjoibWFyaUBnbWFpbC5jb20iLCJpYXQiOjE3MTM1NTIwNzR9.pa2_UUKrHbK7xLDVbof7BpWDI87LmKpvqmKdm_3SxgA"
+                    "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNlY2lsaWEyIiwiZW1haWwiOiJDZWNpbGlhQGhvdG1haWwuY29tIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTcxNDA4ODcwM30.Va8JPxo6bLmq9Tf6YHXazC-gJCvinzYBxE7yFCsn3xY"
                 }
             });
 
@@ -218,7 +218,7 @@ describe('###Tests for Authenticated routes', async(t) => {
                 method: 'GET',
                 url: '/user/662ae086a9469e622467f923'
             });
-            equal(response.statusCode, 404);
+            equal(response.statusCode, 200);
         });
 
 
