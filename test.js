@@ -33,15 +33,15 @@ describe('###Tests for Unauthenticated Routes', async(t) => {})
             equal(response.statusCode, 200);
         });
 
-        test('# GET /artist/:name/musicAlbum', async(t) => {
+        test('# GET /musicGenre/:id/musicAlbum', async(t) => {
             const app = await build(options);
-
+    
             t.after(async() => {
-                await app.close();
+               await app.close();
             });
             const response = await app.inject({
                 method: 'GET',
-                url: '/artist/Twice/musicAlbum'
+                url: '/musicGenre/662ae278a9469e622467f966/musicAlbum'
             });
             equal(response.statusCode, 200);
         });
