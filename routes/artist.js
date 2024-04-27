@@ -64,10 +64,11 @@ export default async function musicArtist(app, options){
         }
     )
 
-    app.get('/artist/:name/musicAlbum', 
+    app.get('/artist/:id/musicAlbum', 
         async (request, reply) => {
-            const nome = request.params.name;
-            return await album.find({artist: nome}).toArray();
+            const id = request.params.id;
+            const artista = await artist.findOne({_id: new app.mongo.ObjectId(id)})
+            return await album.find({artist: artista.name}).toArray();
         }
     )
 }
