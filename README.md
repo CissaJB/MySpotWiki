@@ -76,8 +76,9 @@ Ao criar um usuário um token é gerado, mesmo que todos os usuários tenham um 
   - /musicGenre/:id/musicAlbum -> GET => mostra todos os albuns pertencentes a um gênero musical especificado
 - /user -> POST, GET e DELETE
   - /user/:id -> PUT, GET e DELETE
-###### **`OBS:`**
-Ao usar o DELETE do /user significa que o próprio usuário está se deletando do banco. Enquanto todas as outras rotas de POST, PUT e DELETE tem que ser de um usuário administrador
+
+    
+**`OBS:`** Ao usar o DELETE do /user significa que o próprio usuário está se deletando do banco. Enquanto todas as outras rotas de POST, PUT e DELETE tem que ser de um usuário administrador
 
 Por exemplo para criar um novo artista, faça um POST em /artist e adicione no body:
 ````
@@ -85,7 +86,7 @@ Por exemplo para criar um novo artista, faça um POST em /artist e adicione no b
    "name": "Ariana Grande"
 }
 ```` 
-OBS: Dado não presente no servidor
+**`OBS:`** Só será possível se o dado não estiver presente no servidor
 
 Por exemplo para criar um novo álbum, faça um POST em /musicAlbum e adicione no body:
 ````
