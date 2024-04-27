@@ -63,20 +63,22 @@ Com o servidor pronto:
 "isAdmin": "true"
 
 ````
-Ao criar um usuário um token é gerado, mesmo que todos os usuários tenham um token apenas usuários administradores podem realizar ações como POST, PUT e DELETE
+Ao criar um usuário um token é gerado, mesmo que todos os usuários tenham um token apenas usuários administradores (definidos pelo campo booleano isAdmin, que por padrão é falso) podem realizar ações como POST, PUT e DELETE de todos os usuários.
 
 ### Rotas Existentes e Ações Possíveis
 - /artist -> POST e GET
-  - /artist/:id -> PUT e DELETE
-  - /artist/:name/musicAlbum -> GET
+  - /artist/:id -> PUT e DELETE 
+  - /artist/:name/musicAlbum -> GET => mostra todos os albuns de um dado artista
 - /musicAlbum -> POST e GET
   -/musicAlbum/:id -> PUT e DELETE
 - /musicGenre -> POST e GET
   - /musicGenre/:id -> PUT e DELETE
-  - /musicGenre/:id/musicAlbum -> GET
+  - /musicGenre/:id/musicAlbum -> GET => mostra todos os albuns pertencentes a um gênero musical especificado
 - /user -> POST, GET e DELETE
   - /user/:id -> PUT, GET e DELETE
-  
+###### **`OBS:`**
+Ao usar o DELETE do /user significa que o próprio usuário está se deletando do banco. Enquanto todas as outras rotas de POST, PUT e DELETE tem que ser de um usuário administrador
+
 Por exemplo para criar um novo artista, faça um POST em /artist e adicione no body:
 ````
 {
@@ -92,5 +94,11 @@ Por exemplo para criar um novo álbum, faça um POST em /musicAlbum e adicione n
 "artist": "Ariana Grande"
 "genre_id": "66244c9cce6de20b1248ca39"
 "year": 2024
+}
+````
+Por exemplo para criar um novo gênero musical, faça um POST em /musicGenre e adicione no body:
+````
+{
+   "name": "Samba"
 }
 ````
