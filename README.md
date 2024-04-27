@@ -68,7 +68,7 @@ Ao criar um usuário um token é gerado, mesmo que todos os usuários tenham um 
 ### Rotas Existentes e Ações Possíveis
 - /artist -> POST e GET
   - /artist/:id -> PUT e DELETE 
-  - /artist/:name/musicAlbum -> GET => mostra todos os albuns de um dado artista
+  - /artist/:id/musicAlbum -> GET => mostra todos os albuns de um dado artista
 - /musicAlbum -> POST e GET
   -/musicAlbum/:id -> PUT e DELETE
 - /musicGenre -> POST e GET
