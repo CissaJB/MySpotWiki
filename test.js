@@ -181,7 +181,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'PUT',
-                url: '/user/662ae086a9469e622467f961', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                url: '/user/662ae086a9469e622467f961',
                 headers:{
                     "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 },
@@ -200,7 +200,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'DELETE',
-                url: '/user/662ae086a9469e622467f961', //CRIAR UM OUTRO USUÁRIO E DEPOIS APAGAR
+                url: '/user/662ae086a9469e622467f961', 
                 headers:{
                     "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
@@ -321,7 +321,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             equal(response.statusCode, 204);
         })
 
-        test('# DELETE /musicAlbum/:id', async(t) => {  //DELETE O ALBUM DO TWICE (FÓRMULA OU YOU-TH)
+        test('# DELETE /musicAlbum/:id', async(t) => {  //DELETE O ALBUM DO TWICE
             const app = await build(options);
 
             t.after(async() => {
@@ -406,7 +406,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'PUT',
-                url: '/user/6622db5f69c1d2ba2fa46661', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                url: '/user/6622db5f69c1d2ba2fa46661', 
                 body:{
                     "isAdmin": true
                 }
@@ -422,7 +422,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'PUT',
-                url: '/user/6622db5f69c1d2ba2fa46661', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                url: '/user/6622db5f69c1d2ba2fa46661', 
                  headers:{
                     "x-access-token": "ygJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwMDEyMjN9.YuL3eegGBoymei4zhrGwVulDXuVdMgzp82c9WeMJ9RY"
                 },
@@ -441,7 +441,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             });
             const response = await app.inject({
                 method: 'DELETE',
-                url: '/users/662ae086a9469e622467f961', //LEMBRAR DE CRIAR UM USUÁRIO E PEGAR O ID
+                url: '/users/662ae086a9469e622467f961', 
                  headers:{
                     "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkNpc3NhIiwiZW1haWwiOiJjaXNzYUBnbWFpbC5jb20iLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE3MTQwODYyOTh9.nx0Brju9Cd6lHrRinLraaOTUnCHYgubAWvkqtaR8n8w"
                 }
@@ -470,7 +470,7 @@ describe('###Tests for Authenticated routes', async(t) => {
         equal(response.statusCode, 400);
     })
 
-        test('# PUT /artist/:id', async(t) => {   // TESTE SEM O HEARDER
+        test('# PUT /artist/:id', async(t) => {   // TESTE USUÁRIO NÃO AUTORIZADO
             const app = await build(options);
 
             t.after(async() => {
@@ -548,7 +548,7 @@ describe('###Tests for Authenticated routes', async(t) => {
             equal(response.statusCode, 401);
         })
 
-        test('# DELETE /musicAlbum/:id', async(t) => {  //DELETE O ALBUM DO TWICE (FÓRMULA OU YOU-TH) ALBUM QUE NÃO ESTÁ NA DATABASE
+        test('# DELETE /musicAlbum/:id', async(t) => {  //DELETE O ALBUM DO TWICE (ALBUM QUE NÃO ESTÁ NA DATABASE)
             const app = await build(options);
 
             t.after(async() => {
